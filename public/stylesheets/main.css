@@ -1,7 +1,8 @@
 body {
-  background: red;
+  background: rgb(240, 240, 240);
 }
 
 #salt-of-the-day {
-  background-image: url("https://www.futurity.org/wp/wp-content/uploads/2017/10/sea-salt-on-spoon_1600.jpg");
+  background-color: white;
+  background-size: cover;
 }
