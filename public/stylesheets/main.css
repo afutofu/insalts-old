@@ -1,8 +1,64 @@
 body {
-  background: rgb(240, 240, 240);
+  background: rgb(213, 217, 223);
+  font-family: "Montserrat", sans-serif;
+}
+
+.post {
+  margin-bottom: 10px;
+}
+
+.bg-white {
+  background-color: white;
+  border-bottom: 1px rgba(182, 78, 31, 0.4) solid;
+}
+
+.text-rocksalt {
+  color: rgb(182, 78, 31);
+}
+
+.btn-rocksalt {
+  color: rgb(253, 253, 253);
+  background-color: rgb(182, 78, 31);
+}
+
+.btn-rocksalt:hover {
+  color: rgb(0, 0, 0);
+  background-color: rgb(233, 132, 85);
+}
+
+.btn-outline-rocksalt {
+  color: rgb(182, 78, 31);
+  border-color: rgb(182, 78, 31);
+}
+
+.btn-outline-rocksalt:hover {
+  color: rgb(233, 132, 85);
+  border-color: rgb(233, 132, 85);
+}
+
+#icon {
+  width: 25px;
+  height: 25px;
 }
 
 #salt-of-the-day {
   background-color: white;
-  background-size: cover;
+  background-image: url("https://cdn11.bigcommerce.com/s-dis4vxtxtc/images/stencil/1280x1280/products/1867/2397/image_1577__37264.1567254894.jpg?c=2?imbypass=on");
+  background-size: contain;
+}
+
+#salt-of-the-day h1 {
+  font-weight: bold;
+}
+
+#salt-of-the-day span {
+  font-weight: bold;
+  border-radius: 100px;
+  background-color: rgb(255, 255, 255);
+  padding: 5px 10px;
+  color: rgb(182, 78, 31);
+}
+
+div#salt-of-the-day {
+  margin-bottom: 20px;
 }
