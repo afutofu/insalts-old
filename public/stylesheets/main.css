@@ -59,6 +59,14 @@ body {
   color: rgb(182, 78, 31);
 }
 
+#salt-of-the-day span {
+  font-weight: bold;
+  border-radius: 100px;
+  background-color: rgb(255, 255, 255);
+  padding: 5px 15px;
+  color: rgb(61, 61, 61);
+}
+
 div#salt-of-the-day {
   margin-bottom: 20px;
 }
