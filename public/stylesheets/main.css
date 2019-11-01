@@ -19,10 +19,11 @@ body {
 .btn-rocksalt {
   color: rgb(253, 253, 253);
   background-color: rgb(182, 78, 31);
+  font-weight: bold;
 }
 
 .btn-rocksalt:hover {
-  color: rgb(0, 0, 0);
+  color: rgb(253, 253, 253);
   background-color: rgb(233, 132, 85);
 }
 
