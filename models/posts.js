@@ -7,7 +7,11 @@ var mongoose = require("mongoose");
 var postSchema = new mongoose.Schema({
   title: String,
   image: String,
-  content: String
+  content: String,
+  salt: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Salt"
+  }
 });
 
 // Create

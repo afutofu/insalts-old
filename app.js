@@ -5,6 +5,7 @@ var express = require("express"),
 
 // ROUTES
 var indexRoutes = require("./routes");
+var saltRoutes = require("./routes/salts");
 
 // CONNECT TO DATABASE
 mongoose.connect("mongodb://localhost/insalts", {
@@ -18,6 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // USE ROUTES
 app.use("/", indexRoutes);
+app.use("/s", saltRoutes);
 
 // START SERVER
 app.listen(3000, function() {
