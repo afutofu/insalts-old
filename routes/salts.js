@@ -4,7 +4,7 @@ var express = require("express"),
 
 // INDEX
 router.get("/", function(req, res) {
-  res.send("Salt Index");
+  res.render("salts/");
 });
 
 module.exports = router;

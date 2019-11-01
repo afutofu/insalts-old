@@ -5,6 +5,7 @@ var mongoose = require("mongoose");
 // Create Schema
 var saltSchema = new mongoose.Schema({
   name: String,
+  description: String,
   posts: [
     {
       type: mongoose.Schema.Types.ObjectId,
