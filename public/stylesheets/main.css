@@ -11,6 +11,10 @@ body {
   margin-bottom: 10px;
 }
 
+.salt-name {
+  font-size: 1.2rem;
+}
+
 .title-only h5 {
   margin-bottom: 0;
 }
@@ -26,6 +30,11 @@ body {
 
 .text-rocksalt:hover {
   color: rgb(128, 55, 21);
+}
+
+.btn-xs {
+  padding: 0.2rem 0.5rem;
+  font-size: 0.8rem;
 }
 
 .btn-rocksalt {

@@ -19,11 +19,11 @@
       <div class="card salt">
         <div class="card-header">
           <div class="row">
-            <div class="col-lg-10">
+            <div class="salt-name col-lg-10">
               s/<%= salt.name %>
             </div>
             <div class="col-lg-1">
-              <a href="#" class="btn btn-rocksalt">Join</a>
+              <a href="#" class="btn btn-rocksalt btn-xs">Join</a>
             </div>
           </div>
         </div>
@@ -38,7 +38,7 @@
     </div>
 
     <div class="col-lg-4">
-      <div class="card mb-2">
+      <div class="card mb-3">
         <div class="card-body">
           <h5 class="card-title">SALTS</h5>
           <p class="card-text">
@@ -52,12 +52,22 @@
 
       <div class="card title-only">
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
+          <h5 class="card-title">JOINED SALTS</h5>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">Cras justo odio</li>
-          <li class="list-group-item">Dapibus ac facilisis in</li>
-          <li class="list-group-item">Vestibulum at eros</li>
+          <%for (var i = 0; i < 3; i++){%>
+          <li class="list-group-item ">
+            <div class="row">
+              <div class="col-lg-8">
+                USAPresident
+              </div>
+              <div class="col-lg-4">
+                <a href="#" class="btn btn-rocksalt btn-xs">Leave</a>
+              </div>
+            </div>
+          </li>
+
+          <%}%>
         </ul>
       </div>
     </div>
