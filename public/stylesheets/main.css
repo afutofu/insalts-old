@@ -7,6 +7,14 @@ body {
   margin-bottom: 10px;
 }
 
+.salt {
+  margin-bottom: 10px;
+}
+
+.title-only h5 {
+  margin-bottom: 0;
+}
+
 .bg-white {
   background-color: white;
   border-bottom: 1px rgba(0, 0, 0, 0.05) solid;
@@ -43,6 +51,7 @@ body {
 
 .jumbotron-short {
   padding: 1rem;
+  margin-bottom: 20px;
 }
 
 .jumbotron-short {
@@ -70,6 +79,7 @@ body {
   background-color: white;
   background-image: url("https://cdn11.bigcommerce.com/s-dis4vxtxtc/images/stencil/1280x1280/products/1867/2397/image_1577__37264.1567254894.jpg?c=2?imbypass=on");
   background-size: contain;
+  margin-bottom: 20px;
 }
 
 #salt-of-the-day h1 {
@@ -90,8 +100,4 @@ body {
   background-color: rgb(255, 255, 255);
   padding: 5px 15px;
   color: rgb(61, 61, 61);
-}
-
-div#salt-of-the-day {
-  margin-bottom: 20px;
 }
