@@ -9,7 +9,7 @@ body {
 
 .bg-white {
   background-color: white;
-  border-bottom: 1px rgba(182, 78, 31, 0.4) solid;
+  border-bottom: 1px rgba(0, 0, 0, 0.05) solid;
 }
 
 .text-rocksalt {
@@ -35,6 +35,10 @@ body {
 .btn-outline-rocksalt:hover {
   color: rgb(233, 132, 85);
   border-color: rgb(233, 132, 85);
+}
+
+.jumbotron-short {
+  padding: 1rem;
 }
 
 #icon {
@@ -70,4 +74,19 @@ body {
 
 div#salt-of-the-day {
   margin-bottom: 20px;
+}
+
+#all-salts {
+  /* background-image: url("https://cdn11.bigcommerce.com/s-dis4vxtxtc/images/stencil/1280x1280/products/1867/2397/image_1577__37264.1567254894.jpg?c=2?imbypass=on"); */
+  background-color: white;
+  background-size: cover;
+}
+
+#all-salts h2 {
+  font-weight: bold;
+  margin: 0;
+}
+
+#all-salts p {
+  margin: 0;
 }
