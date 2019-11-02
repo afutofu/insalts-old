@@ -4,7 +4,13 @@ var express = require("express"),
 
 // INDEX
 router.get("/", function(req, res) {
-  res.render("salts/");
+  Salt.find({}, function(err, allSalts) {
+    if (err) {
+      console.log("error");
+    } else {
+      res.render("salts/index", { salts: allSalts });
+    }
+  });
 });
 
 // NEW

@@ -14,7 +14,22 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-lg-8"></div>
+    <div class="col-lg-8">
+      <%salts.forEach(function(salt){%>
+      <div class="card salt">
+        <div class="card-header">
+          s/<%= salt.name %>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title"><%= salt.slogan %></h5>
+          <p class="card-text">
+            <%= salt.description %>
+          </p>
+          <a href="#" class="btn btn-rocksalt">Join</a>
+        </div>
+      </div>
+      <%})%>
+    </div>
 
     <div class="col-lg-4">
       <div class="card">
@@ -23,8 +38,6 @@
           <p class="card-text">
             Check out all the Salts made by our users, or create one yourself!
           </p>
-        </div>
-        <div class="card-body">
           <a class="btn btn-rocksalt btn-block btn-xl" href="/s/new">
             CREATE SALT
           </a>
