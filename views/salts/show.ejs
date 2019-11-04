@@ -4,10 +4,9 @@
   <div class="container">
     <h3 class="">s/<%=salt.name%></h3>
     <p>
-      <span
-        >Browse the saltiest salts. Find which one you like and start
-        insalting</span
-      >
+      <span>
+        <%=salt.description%>
+      </span>
     </p>
   </div>
 </div>
@@ -18,7 +17,7 @@
       <%salt.posts.forEach(function(post){%>
       <div class="card post">
         <div class="card-body">
-          <h6 class="card-title"><%=post.title%></h6>
+          <h5 class="card-title post-title"><%=post.title%></h5>
           <p class="card-text">
             <%=post.content%>
           </p>
