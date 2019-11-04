@@ -1,0 +1,54 @@
+<% include ../partials/header %>
+
+<div id="all-salts" class="jumbotron jumbotron-short">
+  <div class="container">
+    <h3 class="">s/<%=salt.name%></h3>
+    <p>
+      <span
+        >Browse the saltiest salts. Find which one you like and start
+        insalting</span
+      >
+    </p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8">
+      <% for (var i = 0; i < 8; i++){ %>
+      <div class="card post">
+        <div class="card-body">
+          <h6 class="card-title">s/OldPeople</h6>
+          <p class="card-text">
+            Without someone ugly in this world, there would be nothing beautiful
+          </p>
+          <a href="#" class="card-link text-rocksalt">Roast Salt</a>
+        </div>
+      </div>
+      <%} %>
+    </div>
+
+    <!-- Saltiest Salt Card -->
+    <div class=" col-lg-4">
+      <!-- Page Info -->
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">s/<%=salt.name%></h5>
+          <p class="card-text">
+            <%=salt.description%>
+          </p>
+          <a class="btn btn-outline-rocksalt btn-block btn-xl btn-join" href="">
+            JOIN
+          </a>
+          <a class="btn btn-rocksalt btn-block mb-3" href="">
+            CREATE INSALT
+          </a>
+        </div>
+        <!-- <div class="card-body"> -->
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<% include ../partials/footer %>

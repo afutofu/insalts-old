@@ -43,8 +43,13 @@ router.post("/", function(req, res) {
 
 // SHOW
 router.get("/:name", function(req, res) {
-  console.log(req.params.name);
-  res.send("THIS IS THE SAlT SHOW ROUTE");
+  Salt.find({ name: req.params.name }, function(err, foundSalt) {
+    if (err) {
+      res.render("back");
+    } else {
+      res.render("salts/show", { salt: foundSalt[0] });
+    }
+  });
 });
 
 module.exports = router;
