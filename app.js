@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // USE ROUTES
 app.use("/", indexRoutes);
 app.use("/s", saltRoutes);
-app.use("/s/:saltName", postRoutes);
+app.use("/s/:saltName/posts", postRoutes);
 
 // START SERVER
 app.listen(3000, function() {

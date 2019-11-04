@@ -36,7 +36,6 @@ router.post("/", function(req, res) {
     if (err) {
       res.redirect("back");
     } else {
-      console.log(createdSalt);
       res.redirect("/s");
     }
   });
@@ -44,13 +43,15 @@ router.post("/", function(req, res) {
 
 // SHOW
 router.get("/:name", function(req, res) {
-  Salt.find({ name: req.params.name }, function(err, foundSalt) {
-    if (err) {
-      res.render("back");
-    } else {
-      res.render("salts/show", { salt: foundSalt[0] });
-    }
-  });
+  Salt.findOne({ name: req.params.name })
+    .populate("posts")
+    .exec(function(err, foundSalt) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.render("salts/show", { salt: foundSalt });
+      }
+    });
 });
 
 module.exports = router;
