@@ -41,4 +41,10 @@ router.post("/", function(req, res) {
   });
 });
 
+// SHOW
+router.get("/:name", function(req, res) {
+  console.log(req.params.name);
+  res.send("THIS IS THE SAlT SHOW ROUTE");
+});
+
 module.exports = router;
