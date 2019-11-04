@@ -1,6 +1,7 @@
 var express = require("express"),
   router = express.Router(),
-  Salt = require("../models/salts");
+  Salt = require("../models/salts"),
+  Post = require("../models/posts");
 
 // INDEX
 router.get("/", function(req, res) {
