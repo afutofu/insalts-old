@@ -1,0 +1,45 @@
+<% include ./partials/header %>
+
+<div id="all-salts" class="jumbotron jumbotron-short">
+  <div class="container">
+    <h3 class="">Create your account to start insalting</h3>
+    <p></p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <div class="card">
+        <div class="card-body">
+          <form action="/register" method="POST">
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                name="username"
+                placeholder="Userame"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="password"
+                class="form-control"
+                name="password"
+                placeholder="Password"
+              />
+            </div>
+            <div class="form-group">
+              <button class="btn btn-rocksalt">
+                Create Your Account!
+              </button>
+            </div>
+          </form>
+          <a class="text-rocksalt" href="/"> Go Back</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% include ./partials/footer %>
