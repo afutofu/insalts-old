@@ -17,12 +17,12 @@ router.get("/new", function(req, res) {
 
 // CREATE
 router.post("/", function(req, res) {
-  var name = req.body.name;
+  var title = req.body.title;
   var image = req.body.image;
   var text = req.body.text;
 
   var newPost = {
-    title: name,
+    title: title,
     image: image,
     content: text
   };
