@@ -22,12 +22,12 @@ router.get("/new", function(req, res) {
 // CREATE
 router.post("/", function(req, res) {
   var name = req.body.name;
-  var slogan = req.body.slogan;
+  var title = req.body.title;
   var description = req.body.description;
 
   var newSalt = {
     name: name,
-    slogan: slogan,
+    title: title,
     description: description
   };
 
