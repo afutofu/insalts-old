@@ -69,15 +69,15 @@ body {
 }
 
 .jumbotron-short {
-  /* background-image: url("https://cdn11.bigcommerce.com/s-dis4vxtxtc/images/stencil/1280x1280/products/1867/2397/image_1577__37264.1567254894.jpg?c=2?imbypass=on"); */
+  background-image: url("https://cdn11.bigcommerce.com/s-dis4vxtxtc/images/stencil/1280x1280/products/1867/2397/image_1577__37264.1567254894.jpg?c=2?imbypass=on");
   background-color: white;
   background-size: cover;
 }
-
-.jumbotron-short h3 {
+.header-title {
   font-weight: bold;
   margin: 0;
   padding-bottom: 0;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
 
 .jumbotron-short p {
