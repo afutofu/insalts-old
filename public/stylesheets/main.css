@@ -71,7 +71,7 @@ body {
 .jumbotron-short {
   background-image: url("https://cdn11.bigcommerce.com/s-dis4vxtxtc/images/stencil/1280x1280/products/1867/2397/image_1577__37264.1567254894.jpg?c=2?imbypass=on");
   background-color: white;
-  background-size: contain;
+  background-size: cover;
 }
 .header-title {
   font-weight: bold;
