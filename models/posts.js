@@ -9,11 +9,8 @@ var postSchema = new mongoose.Schema({
   image: String,
   content: String,
   salt: {
-    id: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Salt"
-    },
-    saltName: String
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Salt"
   }
 });
 

@@ -16,33 +16,43 @@ router.get("/new", function(req, res) {
 
 // CREATE
 router.post("/", function(req, res) {
+  var saltName = req.params.saltName;
+
   var title = req.body.title;
   var image = req.body.image;
   var content = req.body.content;
 
-  console.log(content);
   content = content.replace(/(?:\r\n|\r|\n)/g, "<br>");
 
-  var newPost = {
-    title: title,
-    image: image,
-    content: content
-  };
-
-  Salt.findOne({ name: req.params.saltName }, function(err, foundSalt) {
+  Salt.findOne({ name: saltName }, function(err, foundSalt) {
     if (err) {
       console.log(err);
     } else {
-      Post.create(newPost, function(err2, newlyCreatedPost) {
-        if (err2) {
+      var newPost = {
+        title: title,
+        image: image,
+        content: content
+      };
+      Post.create(newPost, function(err, newlyCreatedPost) {
+        if (err) {
           console.log(err2);
         } else {
-          newlyCreatedPost.salt.id = foundSalt._id;
-          newlyCreatedPost.salt.saltName = req.params.saltName;
+          // Assign salt id and name to the post/insalt
+          newlyCreatedPost.salt = foundSalt._id;
           newlyCreatedPost.save();
+
+          // Add created post/insalt to salt posts
           foundSalt.posts.push(newlyCreatedPost);
           foundSalt.save();
-          res.redirect("/s/" + req.params.saltName);
+
+          Salt.findOne({ name: saltName }, function(err, newlyFoundSalt) {
+            if (err) {
+              console.log(err);
+            } else {
+              // Go back to salt show page
+              res.redirect("/s/" + foundSalt.name);
+            }
+          });
         }
       });
     }

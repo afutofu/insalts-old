@@ -1,7 +1,6 @@
 var express = require("express"),
   router = express.Router(),
-  Salt = require("../models/salts"),
-  Post = require("../models/posts");
+  Salt = require("../models/salts");
 
 // INDEX
 router.get("/", function(req, res) {
@@ -43,13 +42,16 @@ router.post("/", function(req, res) {
 
 // SHOW
 router.get("/:name", function(req, res) {
-  Salt.findOne({ name: req.params.name })
+  var saltName = req.params.name;
+
+  Salt.findOne({ name: saltName })
     .populate("posts")
     .exec(function(err, foundSalt) {
       if (err) {
         console.log(err);
       } else {
-        // console.log(foundSalt.posts[0].content);
+        // foundSalt.posts = [];
+        // foundSalt.save();
         res.render("salts/show", { salt: foundSalt });
       }
     });
