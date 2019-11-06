@@ -7,7 +7,7 @@ var express = require("express"),
 router.get("/", function(req, res) {
   Salt.find({}, function(err, allSalts) {
     if (err) {
-      console.log("error");
+      console.log(err);
     } else {
       res.render("salts/index", { salts: allSalts });
     }
@@ -49,6 +49,7 @@ router.get("/:name", function(req, res) {
       if (err) {
         console.log(err);
       } else {
+        // console.log(foundSalt.posts[0].content);
         res.render("salts/show", { salt: foundSalt });
       }
     });

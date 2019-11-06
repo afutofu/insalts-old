@@ -9,7 +9,6 @@ router.get("/new", function(req, res) {
     if (err) {
       res.redirect("back");
     } else {
-      console.log(foundSalt);
       res.render("posts/new", { salt: foundSalt });
     }
   });
@@ -19,12 +18,15 @@ router.get("/new", function(req, res) {
 router.post("/", function(req, res) {
   var title = req.body.title;
   var image = req.body.image;
-  var text = req.body.text;
+  var content = req.body.content;
+
+  console.log(content);
+  content = content.replace(/(?:\r\n|\r|\n)/g, "<br>");
 
   var newPost = {
     title: title,
     image: image,
-    content: text
+    content: content
   };
 
   Salt.findOne({ name: req.params.saltName }, function(err, foundSalt) {
@@ -40,10 +42,6 @@ router.post("/", function(req, res) {
           newlyCreatedPost.save();
           foundSalt.posts.push(newlyCreatedPost);
           foundSalt.save();
-          console.log("New Post");
-          console.log(newlyCreatedPost);
-          console.log("\nUpdated Salt");
-          console.log(foundSalt);
           res.redirect("/s/" + req.params.saltName);
         }
       });
