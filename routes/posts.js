@@ -1,10 +1,11 @@
 var express = require("express"),
   router = express.Router({ mergeParams: true }),
+  middleware = require("../middleware"),
   Post = require("../models/posts"),
   Salt = require("../models/salts");
 
 // NEW
-router.get("/new", function(req, res) {
+router.get("/new", middleware.isLoggedIn, function(req, res) {
   Salt.findOne({ name: req.params.saltName }, function(err, foundSalt) {
     if (err) {
       res.redirect("back");
@@ -15,7 +16,7 @@ router.get("/new", function(req, res) {
 });
 
 // CREATE
-router.post("/", function(req, res) {
+router.post("/", middleware.isLoggedIn, function(req, res) {
   var saltName = req.params.saltName;
 
   var title = req.body.title;
@@ -51,7 +52,6 @@ router.post("/", function(req, res) {
               console.log(err);
             } else {
               // Go back to salt show page
-              console.log(newlyFoundSalt);
               res.redirect("/s/" + foundSalt.name);
             }
           });

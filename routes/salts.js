@@ -1,6 +1,7 @@
 var express = require("express"),
   router = express.Router(),
-  Salt = require("../models/salts");
+  Salt = require("../models/salts"),
+  middleware = require("../middleware");
 
 // INDEX
 router.get("/", function(req, res) {
@@ -14,12 +15,12 @@ router.get("/", function(req, res) {
 });
 
 // NEW
-router.get("/new", function(req, res) {
+router.get("/new", middleware.isLoggedIn, function(req, res) {
   res.render("salts/new");
 });
 
 // CREATE
-router.post("/", function(req, res) {
+router.post("/", middleware.isLoggedIn, function(req, res) {
   var name = req.body.name;
   var title = req.body.title;
   var description = req.body.description;
@@ -50,7 +51,6 @@ router.get("/:name", function(req, res) {
       if (err) {
         console.log(err);
       } else {
-        console.log(foundSalt);
         res.render("salts/show", { salt: foundSalt });
       }
     });
