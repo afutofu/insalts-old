@@ -38,7 +38,8 @@ router.post("/", function(req, res) {
           console.log(err2);
         } else {
           // Assign salt id and name to the post/insalt
-          newlyCreatedPost.salt = foundSalt._id;
+          newlyCreatedPost.salt.id = foundSalt._id;
+          newlyCreatedPost.salt.saltName = foundSalt.name;
           newlyCreatedPost.save();
 
           // Add created post/insalt to salt posts

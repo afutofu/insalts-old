@@ -10,17 +10,19 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-8">
-      <% for (var i = 0; i < 8; i++){ %>
+      <%salts.forEach(function(salt){%> <%if (salt.posts.length > 0){%>
+      <%salt.posts.forEach(function(post){%>
       <div class="card post">
         <div class="card-body">
-          <h6 class="card-title post-title">s/OldPeople</h6>
+          <p class="saltName">s/<%=post.salt.saltName%></p>
+          <h6 class="card-title post-title"><%=post.title%></h6>
           <p class="card-text">
-            Without someone ugly in this world, there would be nothing beautiful
+            <%=post.content%>
           </p>
           <a href="#" class="card-link text-rocksalt">Roast Salt</a>
         </div>
       </div>
-      <%} %>
+      <%})%> <%}%> <%})%>
     </div>
 
     <!-- Saltiest Salt Card -->

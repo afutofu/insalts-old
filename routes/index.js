@@ -5,11 +5,21 @@
 var express = require("express"),
   router = express.Router(),
   passport = require("passport"),
-  User = require("../models/user");
+  User = require("../models/user"),
+  Salt = require("../models/salts");
 
 // INDEX
 router.get("/", function(req, res) {
-  res.render("landing");
+  Salt.find({})
+    .populate("posts")
+    .exec(function(err, allSalts) {
+      if (err) {
+        req.flash("error", err.message);
+        return res.redirect("back");
+      } else {
+        res.render("landing", { salts: allSalts });
+      }
+    });
 });
 
 // NEW
