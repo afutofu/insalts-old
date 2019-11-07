@@ -50,8 +50,7 @@ router.get("/:name", function(req, res) {
       if (err) {
         console.log(err);
       } else {
-        // foundSalt.posts = [];
-        // foundSalt.save();
+        console.log(foundSalt);
         res.render("salts/show", { salt: foundSalt });
       }
     });

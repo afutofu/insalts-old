@@ -51,6 +51,7 @@ router.post("/", function(req, res) {
               console.log(err);
             } else {
               // Go back to salt show page
+              console.log(newlyFoundSalt);
               res.redirect("/s/" + foundSalt.name);
             }
           });
