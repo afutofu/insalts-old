@@ -52,7 +52,7 @@ app.use(function(req, res, next) {
 // USE ROUTES
 app.use("/", indexRoutes);
 app.use("/s", saltRoutes);
-app.use("/s/:saltName/posts", postRoutes);
+app.use("/s/:saltName/insalt", postRoutes);
 
 // START SERVER
 app.listen(3000, function() {

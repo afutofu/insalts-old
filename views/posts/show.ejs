@@ -14,7 +14,6 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-8">
-      <%salt.posts.forEach(function(post){%>
       <div class="card post">
         <div class="card-body">
           <h5 class="card-title post-title"><%=post.title%></h5>
@@ -23,7 +22,6 @@
           </p>
         </div>
       </div>
-      <%});%>
     </div>
 
     <!-- Saltiest Salt Card -->
@@ -40,18 +38,6 @@
             href="#"
           >
             JOIN
-          </a>
-          <a
-            class="btn btn-rocksalt btn-block mb-3"
-            href="/s/<%=salt.name%>/posts/new"
-          >
-            CREATE INSALT
-          </a>
-          <a
-            class="btn btn-outline-rocksalt text-rocksalt btn-xl btn-block mb-3"
-            href="/s/<%=salt.name%>/edit"
-          >
-            EDIT
           </a>
           <form action="/s/<%=salt.name%>/?_method=DELETE" method="POST">
             <button class="btn btn-rocksalt text-rocksalt btn-xl btn-block">
