@@ -56,4 +56,25 @@ router.get("/:name", function(req, res) {
     });
 });
 
+router.delete("/:name", function(req, res) {
+  Salt.findOne({ name: req.params.name }, function(err, foundSalt) {
+    if (err) {
+      res.redirect("back");
+    } else {
+      Salt.deleteOne({ _id: foundSalt._id }, function(err) {
+        if (err) {
+          req.flash("error", "Couldnt remove salt");
+          res.redirect("/s");
+        } else {
+          req.flash(
+            "success",
+            "s/" + req.params.name + " successfully removed"
+          );
+          res.redirect("/s");
+        }
+      });
+    }
+  });
+});
+
 module.exports = router;

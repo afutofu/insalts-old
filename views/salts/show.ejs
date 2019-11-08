@@ -36,7 +36,10 @@
           <p class="card-text">
             <%=salt.description%>
           </p>
-          <a class="btn btn-outline-rocksalt btn-block btn-xl btn-join" href="">
+          <a
+            class="btn btn-outline-rocksalt btn-block btn-xl btn-join mb-3"
+            href="#"
+          >
             JOIN
           </a>
           <a
@@ -45,9 +48,18 @@
           >
             CREATE INSALT
           </a>
+          <a
+            class="btn btn-outline-rocksalt text-rocksalt btn-xl btn-block mb-3"
+            href="#"
+          >
+            EDIT
+          </a>
+          <form action="/s/<%=salt.name%>/?_method=DELETE" method="POST">
+            <button class="btn btn-rocksalt text-rocksalt btn-xl btn-block">
+              REMOVE
+            </button>
+          </form>
         </div>
-        <!-- <div class="card-body"> -->
-        <!-- </div> -->
       </div>
     </div>
   </div>
