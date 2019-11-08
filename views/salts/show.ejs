@@ -15,23 +15,25 @@
   <div class="row">
     <div class="col-lg-8">
       <%salt.posts.forEach(function(post){%>
-      <div class="card post">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-lg-11">
-              <h5 class="card-title post-title"><%=post.title%></h5>
-              <p class="card-text">
-                <%-post.content%>
-              </p>
-            </div>
-            <div class="col-lg-1 text-center">
-              <i class="far fa-caret-square-up i-vote"></i>
-              <span class="votes">0</span>
-              <i class="fas fa-caret-square-down i-vote mt-1"></i>
+      <a class="post-link" href="/s/<%=salt.name%>/post/<%=post._id%>">
+        <div class="card post">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-11">
+                <h5 class="card-title post-title"><%=post.title%></h5>
+                <p class="card-text">
+                  <%-post.content%>
+                </p>
+              </div>
+              <div class="col-lg-1 text-center">
+                <i class="far fa-caret-square-up i-vote"></i>
+                <span class="votes">0</span>
+                <i class="fas fa-caret-square-down i-vote mt-1"></i>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </a>
       <%});%>
     </div>
 

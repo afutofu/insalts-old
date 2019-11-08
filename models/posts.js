@@ -14,7 +14,8 @@ var postSchema = new mongoose.Schema({
       ref: "Salt"
     },
     saltName: String
-  }
+  },
+  vote: Number
 });
 
 // Create

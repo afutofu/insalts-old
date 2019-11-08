@@ -61,4 +61,22 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
   });
 });
 
+// SHOW
+router.get("/:id", function(req, res) {
+  //   Salt.findOne({ name: req.params.saltName }, function(err, foundSalt) {
+  //     if (err) {
+  //       req.flash("error", "Could not access that salt");
+  //       res.redirect("/s/" + foundSalt.name);
+  //     } else {
+  //       Post.findById(req.params.id, function(err, foundPost) {
+  //         if (err) {
+  //           req.flash("error", "Could not access that insalt");
+  //           res.render("posts/show", { salt: foundSalt, post: foundPost });
+  //         }
+  //       });
+  //     }
+  //   });
+  res.send("post show route");
+});
+
 module.exports = router;
