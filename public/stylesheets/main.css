@@ -37,6 +37,10 @@ body {
   color: rgb(128, 55, 21);
 }
 
+.bg-grey {
+  background-color: grey;
+}
+
 .btn-xs {
   padding: 0.2rem 0.5rem;
   font-size: 0.8rem;
@@ -83,6 +87,14 @@ body {
 
 .jumbotron-short p {
   margin: 0;
+}
+
+.votes {
+  font-size: 1.49rem;
+}
+
+.i-vote {
+  font-size: 20px;
 }
 
 #icon {
