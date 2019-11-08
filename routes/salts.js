@@ -56,12 +56,50 @@ router.get("/:name", function(req, res) {
     });
 });
 
+// EDIT
+router.get("/:name/edit", function(req, res) {
+  Salt.findOne({ name: req.params.name }, function(err, foundSalt) {
+    if (err) {
+      req.flash("error", err.message);
+      res.redirect("/s/" + req.params.name);
+    } else {
+      res.render("salts/edit", { salt: foundSalt });
+    }
+  });
+});
+
+// UPDATE
+router.put("/:name", function(req, res) {
+  Salt.findOne({ name: req.params.name }, function(err, foundSalt) {
+    if (err) {
+      console.log(err);
+      req.flash("error", err.message);
+      res.redirect("/s/" + req.params.name);
+    } else {
+      Salt.findByIdAndUpdate(foundSalt._id, req.body.salt, function(
+        err,
+        updatedSalt
+      ) {
+        if (err) {
+          console.log(err);
+          req.flash("error", err.message);
+          res.redirect("/s/" + req.params.name);
+        } else {
+          req.flash("success", "s/" + foundSalt.name + " has been updated");
+          res.redirect("/s/" + foundSalt.name);
+        }
+      });
+    }
+  });
+});
+
+// DESTROY
 router.delete("/:name", function(req, res) {
   Salt.findOne({ name: req.params.name }, function(err, foundSalt) {
     if (err) {
       res.redirect("back");
     } else {
-      Salt.deleteOne({ _id: foundSalt._id }, function(err) {
+      Salt.findByIdAndDelete(foundSalt._id, function(err) {
         if (err) {
           req.flash("error", "Couldnt remove salt");
           res.redirect("/s");
