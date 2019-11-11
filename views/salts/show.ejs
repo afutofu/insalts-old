@@ -27,7 +27,7 @@
               </div>
               <div class="col-lg-1 text-center">
                 <i class="far fa-caret-square-up i-vote upvote"></i>
-                <span class="votes">0</span>
+                <span class="votes"><%=post.vote%></span>
                 <i class="fas fa-caret-square-down i-vote downvote mt-1"></i>
               </div>
             </div>
@@ -47,7 +47,8 @@
             <%=salt.description%>
           </p>
           <a
-            class="btn btn-outline-rocksalt btn-block btn-xl btn-join mb-3"
+            id="btn-join"
+            class="btn btn-outline-rocksalt btn-block btn-xl mb-3"
             href="#"
           >
             JOIN

@@ -15,7 +15,7 @@ var postSchema = new mongoose.Schema({
     },
     saltName: String
   },
-  vote: Number
+  vote: { type: Number, default: 0 }
 });
 
 // Create

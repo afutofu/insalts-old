@@ -115,6 +115,10 @@ a.post-link:active {
   font-size: 20px;
 }
 
+.i-vote:hover {
+  color: var(--rock-salt);
+}
+
 .comment-form .form-group {
   margin-bottom: -0.1rem;
 }
