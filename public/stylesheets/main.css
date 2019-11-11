@@ -119,13 +119,30 @@ a.post-link:active {
   color: var(--rock-salt);
 }
 
+.comment-form {
+  border: 1px solid #ccc !important;
+}
+
 .comment-form .form-group {
-  margin-bottom: -0.1rem;
+  margin-bottom: 0rem;
 }
 
 .comment-form .container {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+}
+
+.comment-text-form {
+  outline: none;
+  box-shadow: none !important;
+  border: none;
+  border-bottom: 1px solid #ccc !important;
+  border-radius: 0px;
+}
+
+.comment-toolbar {
+  margin: 0rem 0rem;
+  border: none;
 }
 
 #icon {

@@ -31,7 +31,6 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
     description: description
   };
 
-  console.log("test");
   Salt.create(newSalt, function(err, createdSalt) {
     if (err) {
       res.redirect("back");
@@ -51,7 +50,6 @@ router.get("/:name", function(req, res) {
       if (err) {
         console.log(err);
       } else {
-        console.log(foundSalt.posts[0].vote);
         res.render("salts/show", { salt: foundSalt });
       }
     });

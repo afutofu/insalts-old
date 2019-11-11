@@ -25,7 +25,7 @@ downvote.on("mouseleave", function() {
   postLinks.unbind("click", disableLink);
 });
 
-// JOIN BUTTON HOVER TO LEAVE
+// JOIN BUTTON HOVER TO LEAVE BUTTON
 var joinBtn = $("#btn-join");
 
 joinBtn.on("mouseenter", function() {
