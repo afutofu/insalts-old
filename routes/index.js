@@ -5,7 +5,7 @@
 var express = require("express"),
   router = express.Router(),
   passport = require("passport"),
-  User = require("../models/user"),
+  User = require("../models/users"),
   Salt = require("../models/salts");
 
 // INDEX

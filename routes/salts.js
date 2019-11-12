@@ -1,5 +1,6 @@
 var express = require("express"),
   router = express.Router(),
+  User = require("../models/users"),
   Salt = require("../models/salts"),
   middleware = require("../middleware");
 
@@ -9,7 +10,22 @@ router.get("/", function(req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.render("salts/index", { salts: allSalts });
+      if (req.isAuthenticated()) {
+        User.findById(req.user._id)
+          .populate("joinedSalts")
+          .exec(function(err, foundUser) {
+            if (err) {
+              req.flash("error", "Could not find user");
+            } else {
+              res.render("salts/index", {
+                salts: allSalts,
+                joinedSalts: foundUser.joinedSalts
+              });
+            }
+          });
+      } else {
+        res.render("salts/index", { salts: allSalts });
+      }
     }
   });
 });
@@ -34,8 +50,11 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
     name: name,
     title: title,
     description: description,
-    author: author
+    author: author,
+    members: [req.user]
   };
+
+  // newSalt.members.push(req.user);
 
   Salt.create(newSalt, function(err, createdSalt) {
     if (err) {

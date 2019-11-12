@@ -6,7 +6,9 @@ var express = require("express"),
   methodOverride = require("method-override"),
   flash = require("connect-flash"),
   LocalStrategy = require("passport-local"),
-  User = require("./models/user");
+  User = require("./models/users");
+
+var PORT = process.env.PORT || 3000;
 
 // ROUTES
 var indexRoutes = require("./routes");
@@ -23,6 +25,7 @@ mongoose.set("useFindAndModify", false);
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(methodOverride("_method"));
 app.use(flash());
 
@@ -55,6 +58,6 @@ app.use("/s", saltRoutes);
 app.use("/s/:saltName/insalt", postRoutes);
 
 // START SERVER
-app.listen(3000, function() {
-  console.log("Server has started!");
+app.listen(PORT, function() {
+  console.log("Server listening on " + PORT);
 });

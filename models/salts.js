@@ -19,7 +19,13 @@ var saltSchema = new mongoose.Schema({
       ref: "User"
     },
     name: String
-  }
+  },
+  members: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
+    }
+  ]
 });
 
 // Create Model

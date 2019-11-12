@@ -32,13 +32,13 @@ downvote.on("mouseleave", function() {
   postLinks.unbind("click", disableLink);
 });
 
-// JOIN BUTTON HOVER TO LEAVE BUTTON
-var joinBtn = $("#btn-join");
+// JOINED BUTTON HOVER TO LEAVE BUTTON
+var joinedBtn = $("#btn-joined");
 
-joinBtn.on("mouseenter", function() {
+joinedBtn.on("mouseenter", function() {
   $(this).text("LEAVE");
 });
 
-joinBtn.on("mouseleave", function() {
-  $(this).text("JOIN");
+joinedBtn.on("mouseleave", function() {
+  $(this).text("JOINED");
 });
