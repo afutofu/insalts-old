@@ -1,13 +1,20 @@
-// VOTING SYSTEM
+// POST CLICKS
 var upvote = $("i.upvote");
 var downvote = $("i.downvote");
 var votes = $(".votes");
 var postLinks = $(".post-link");
+var postSaltLink = $("post-salt-name");
 
 function disableLink(e) {
   e.preventDefault();
   return false;
 }
+
+postSaltLink.on("click", function() {
+  postLinks.on("click", function(e) {
+    e.preventDefault();
+  });
+});
 
 upvote.on("mouseenter", function() {
   postLinks.bind("click", disableLink);
