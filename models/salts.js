@@ -12,7 +12,14 @@ var saltSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: "Post"
     }
-  ]
+  ],
+  author: {
+    id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
+    },
+    name: String
+  }
 });
 
 // Create Model

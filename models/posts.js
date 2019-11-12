@@ -15,6 +15,13 @@ var postSchema = new mongoose.Schema({
     },
     saltName: String
   },
+  author: {
+    id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
+    },
+    name: String
+  },
   vote: { type: Number, default: 0 }
 });
 

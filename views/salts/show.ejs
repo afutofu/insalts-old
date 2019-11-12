@@ -59,6 +59,7 @@
           >
             CREATE INSALT
           </a>
+          <%if(currentUser && salt.author.id.equals(currentUser._id)){%>
           <a
             class="btn btn-outline-rocksalt text-rocksalt btn-xl btn-block mb-3"
             href="/s/<%=salt.name%>/edit"
@@ -70,6 +71,7 @@
               REMOVE
             </button>
           </form>
+          <%}%>
         </div>
       </div>
     </div>

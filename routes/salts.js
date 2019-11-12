@@ -25,10 +25,16 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
   var title = req.body.title;
   var description = req.body.description;
 
+  var author = {
+    id: req.user._id,
+    name: req.user.username
+  };
+
   var newSalt = {
     name: name,
     title: title,
-    description: description
+    description: description,
+    author: author
   };
 
   Salt.create(newSalt, function(err, createdSalt) {
