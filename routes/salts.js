@@ -54,13 +54,21 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
     members: [req.user]
   };
 
-  // newSalt.members.push(req.user);
-
-  Salt.create(newSalt, function(err, createdSalt) {
+  User.findById(req.user._id, function(err, foundUser) {
     if (err) {
-      res.redirect("back");
+      console.log(err);
+      req.flash("error", "User not found");
     } else {
-      res.redirect("/s");
+      Salt.create(newSalt, function(err, createdSalt) {
+        if (err) {
+          res.redirect("back");
+        } else {
+          foundUser.joinedSalts.push(createdSalt);
+          foundUser.save();
+          createdSalt.save();
+          res.redirect("/s");
+        }
+      });
     }
   });
 });
@@ -71,6 +79,7 @@ router.get("/:name", function(req, res) {
 
   Salt.findOne({ name: saltName })
     .populate("posts")
+    .populate("members")
     .exec(function(err, foundSalt) {
       if (err) {
         console.log(err);

@@ -19,10 +19,11 @@
       <div class="card salt">
         <div class="card-header">
           <div class="row">
-            <div class="salt-name col-lg-10">
-              <a class="text-rocksalt" href="/s/<%=salt.name%>">
+            <div class="col-lg-10">
+              <a class="salt-name  text-rocksalt" href="/s/<%=salt.name%>">
                 s/<%= salt.name %>
               </a>
+              <span>- Made by <%= salt.author.name %></span>
             </div>
             <div class="col-lg-1">
               <a href="#" class="btn btn-rocksalt btn-xs">Join</a>
@@ -62,7 +63,7 @@
           <li class="list-group-item ">
             <div class="row">
               <div class="col-lg-8">
-                salt.name
+                <%=salt.name%>
               </div>
               <div class="col-lg-4">
                 <a href="#" class="btn btn-rocksalt btn-xs">Leave</a>

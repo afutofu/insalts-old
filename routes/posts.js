@@ -36,7 +36,7 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
       };
       Post.create(newPost, function(err, newlyCreatedPost) {
         if (err) {
-          console.log(err2);
+          console.log(err);
         } else {
           // Assign salt id and name to the post/insalt
           newlyCreatedPost.salt.id = foundSalt._id;
@@ -46,15 +46,9 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
           // Add created post/insalt to salt posts
           foundSalt.posts.push(newlyCreatedPost);
           foundSalt.save();
+          newlyCreatedPost.save();
 
-          Salt.findOne({ name: saltName }, function(err, newlyFoundSalt) {
-            if (err) {
-              console.log(err);
-            } else {
-              // Go back to salt show page
-              res.redirect("/s/" + foundSalt.name);
-            }
-          });
+          res.redirect("/s/" + foundSalt.name);
         }
       });
     }
