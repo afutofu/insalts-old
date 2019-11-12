@@ -84,6 +84,7 @@ router.get("/:name", function(req, res) {
       if (err) {
         console.log(err);
       } else {
+        console.log(foundSalt.members);
         res.render("salts/show", { salt: foundSalt });
       }
     });

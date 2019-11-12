@@ -38,17 +38,28 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
         if (err) {
           console.log(err);
         } else {
-          // Assign salt id and name to the post/insalt
-          newlyCreatedPost.salt.id = foundSalt._id;
-          newlyCreatedPost.salt.saltName = foundSalt.name;
-          newlyCreatedPost.save();
+          User.findById(req.user._id, function(err, foundUser) {
+            if (err) {
+              console.log(err);
+            } else {
+              // Assign salt id and name to the post/insalt
+              newlyCreatedPost.salt.id = foundSalt._id;
+              newlyCreatedPost.salt.saltName = foundSalt.name;
+              newlyCreatedPost.save();
 
-          // Add created post/insalt to salt posts
-          foundSalt.posts.push(newlyCreatedPost);
-          foundSalt.save();
-          newlyCreatedPost.save();
+              // Add created post/insalt to salt posts
+              foundSalt.posts.push(newlyCreatedPost);
+              foundSalt.save();
 
-          res.redirect("/s/" + foundSalt.name);
+              // Add created post to user's posts
+              foundUser.posts.push();
+              foundUser.save();
+
+              newlyCreatedPost.save();
+
+              res.redirect("/s/" + foundSalt.name);
+            }
+          });
         }
       });
     }
