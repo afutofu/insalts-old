@@ -2,7 +2,8 @@ var express = require("express"),
   router = express.Router({ mergeParams: true }),
   middleware = require("../middleware"),
   Post = require("../models/posts"),
-  Salt = require("../models/salts");
+  Salt = require("../models/salts"),
+  User = require("../models/users");
 
 // NEW
 router.get("/new", middleware.isLoggedIn, function(req, res) {
@@ -55,8 +56,6 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
               foundUser.posts.push();
               foundUser.save();
 
-              newlyCreatedPost.save();
-
               res.redirect("/s/" + foundSalt.name);
             }
           });
@@ -79,6 +78,49 @@ router.get("/:id", function(req, res) {
           res.redirect("/s/" + foundSalt.name);
         } else {
           res.render("posts/show", { salt: foundSalt, post: foundPost });
+        }
+      });
+    }
+  });
+});
+
+// EDIT
+router.get("/:id/edit", function(req, res) {
+  Salt.findOne({ name: req.params.saltName }, function(err, foundSalt) {
+    if (err) {
+      req.flash("error", "Could not find Salt");
+      res.redirect("/s/" + req.params.saltName);
+    } else {
+      Post.findById(req.params.id, function(err, foundPost) {
+        if (err) {
+          req.flash("error", "Could not find Post");
+          res.redirect("/s/" + req.params.saltName);
+        } else {
+          res.render("posts/edit", { salt: foundSalt, post: foundPost });
+        }
+      });
+    }
+  });
+});
+
+// UPDATE
+router.put("/:id", function(req, res) {
+  Post.findById(req.params.id, function(err, foundPost) {
+    if (err) {
+      req.flash("error", "Could not find post");
+    } else {
+      Post.findByIdAndUpdate(req.params.id, req.body.salt, function(
+        err,
+        updatedPost
+      ) {
+        if (err) {
+          req.flash("error", "Could not update post");
+          res.redirect("/s/" + foundPost.salt.saltName);
+        } else {
+          req.flash("success", "Updated post!");
+          res.redirect(
+            "/s/" + foundPost.salt.saltName + "/insalt/" + foundPost._id
+          );
         }
       });
     }
