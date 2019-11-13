@@ -46,6 +46,8 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
               // Assign salt id and name to the post/insalt
               newlyCreatedPost.salt.id = foundSalt._id;
               newlyCreatedPost.salt.saltName = foundSalt.name;
+              newlyCreatedPost.author.id = req.user._id;
+              newlyCreatedPost.author.name = req.user.username;
               newlyCreatedPost.save();
 
               // Add created post/insalt to salt posts
@@ -123,6 +125,20 @@ router.put("/:id", function(req, res) {
           );
         }
       });
+    }
+  });
+});
+
+// DESTROY
+router.delete("/:id", function(req, res) {
+  Post.findByIdAndDelete(req.params.id, function(err) {
+    if (err) {
+      console.log(err.message);
+      req.flash("error", "Could not delete insalt");
+      res.redirect("/s/" + req.params.saltName + "/insalt/" + req.params.id);
+    } else {
+      req.flash("success", "Successfully deleted insalt");
+      res.redirect("/s/" + req.params.saltName);
     }
   });
 });

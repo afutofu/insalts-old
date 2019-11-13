@@ -11,12 +11,6 @@ $(document).ready(function() {
     return false;
   }
 
-  // postSaltLink.on("click", function() {
-  //   postLinks.on("click", function(e) {
-  //     e.preventDefault();
-  //   });
-  // });
-
   upvote.on("mouseenter", function() {
     postLinks.bind("click", disableLink);
   });

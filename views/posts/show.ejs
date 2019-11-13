@@ -20,6 +20,7 @@
           <p class="card-text">
             <%-post.content%>
           </p>
+          <%if (currentUser && post.author.id.equals(currentUser._id)){%>
           <div class="row mb-3">
             <div class="col-lg-1">
               <a
@@ -30,13 +31,17 @@
               >
             </div>
             <div class="col-lg-1">
-              <form action="/s">
-                <button id="btn-remove" class="btn btn-danger btn-sm">
+              <form
+                action="/s/<%=salt.name%>/insalt/<%=post._id%>/?_method=DELETE"
+                method="POST"
+              >
+                <button class="btn btn-danger btn-sm">
                   REMOVE
                 </button>
               </form>
             </div>
           </div>
+          <%}%>
           <div class="comment-form">
             <form action="">
               <div class="form-group">
