@@ -12,30 +12,34 @@
     <div class="col-lg-8">
       <%salts.forEach(function(salt){%> <%if (salt.posts.length > 0){%>
       <%salt.posts.forEach(function(post){%>
-      <a class="post-link" href="/s/<%=salt.name%>/insalt/<%=post._id%>">
-        <div class="card post">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-lg-11">
-                <p>
-                  <a href="/s/<%=salt.name%>" class="post-salt-name"
-                    >s/<%=post.salt.saltName%></a
-                  >
-                </p>
+
+      <div class="card post">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-11">
+              <p>
+                <a href="/s/<%=salt.name%>" class="post-salt-name"
+                  >s/<%=post.salt.saltName%></a
+                >
+              </p>
+              <a
+                class="post-link"
+                href="/s/<%=salt.name%>/insalt/<%=post._id%>"
+              >
                 <h6 class="card-title post-title"><%=post.title%></h6>
                 <p class="card-text">
                   <%-post.content%>
                 </p>
-              </div>
-              <div class="col-lg-1 text-center">
-                <i class="far fa-caret-square-up i-vote upvote"></i>
-                <span class="votes"><%=post.vote%></span>
-                <i class="fas fa-caret-square-down i-vote downvote mt-1"></i>
-              </div>
+              </a>
+            </div>
+            <div class="col-lg-1 text-center">
+              <i class="far fa-caret-square-up i-vote upvote"></i>
+              <span class="votes"><%=post.vote%></span>
+              <i class="fas fa-caret-square-down i-vote downvote mt-1"></i>
             </div>
           </div>
         </div>
-      </a>
+      </div>
       <%})%> <%}%> <%})%>
     </div>
 

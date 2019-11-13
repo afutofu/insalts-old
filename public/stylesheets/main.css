@@ -15,6 +15,11 @@ a.post-link:active {
   text-decoration: none;
 }
 
+a.post-link-nested {
+  color: inherit;
+  text-decoration: none;
+}
+
 .post {
   margin-bottom: 1rem;
 }
