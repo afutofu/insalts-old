@@ -87,7 +87,7 @@ router.get("/:id", function(req, res) {
 });
 
 // EDIT
-router.get("/:id/edit", function(req, res) {
+router.get("/:id/edit", middleware.checkPostOwnership, function(req, res) {
   Salt.findOne({ name: req.params.saltName }, function(err, foundSalt) {
     if (err) {
       req.flash("error", "Could not find Salt");
@@ -106,7 +106,7 @@ router.get("/:id/edit", function(req, res) {
 });
 
 // UPDATE
-router.put("/:id", function(req, res) {
+router.put("/:id", middleware.checkPostOwnership, function(req, res) {
   Post.findById(req.params.id, function(err, foundPost) {
     if (err) {
       req.flash("error", "Could not find post");
@@ -130,7 +130,7 @@ router.put("/:id", function(req, res) {
 });
 
 // DESTROY
-router.delete("/:id", function(req, res) {
+router.delete("/:id", middleware.checkPostOwnership, function(req, res) {
   Post.findByIdAndDelete(req.params.id, function(err) {
     if (err) {
       console.log(err.message);
