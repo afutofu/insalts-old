@@ -2,7 +2,9 @@
 
 <div id="all-salts" class="jumbotron jumbotron-short">
   <div class="container">
-    <h3 class="header-title">s/<%=salt.name%></h3>
+    <h3 class="header-title">
+      s/<span class="salt-name-title"><%=salt.name%></span>
+    </h3>
     <p>
       <span class="header-title">
         <%=salt.description%>
@@ -46,11 +48,11 @@
           <p class="card-text">
             <%=salt.description%>
           </p>
-          <%if (currentUser.joinedSalts.includes(salt._id)){%>
+          <%if (currentUser && currentUser.joinedSalts.includes(salt._id)){%>
           <a
             id="btn-joined"
             class="btn btn-outline-rocksalt btn-block btn-xl mb-3"
-            href="#"
+            href=""
           >
             JOINED
           </a>
@@ -58,7 +60,7 @@
           <a
             id="btn-join"
             class="btn btn-outline-rocksalt btn-block btn-xl mb-3"
-            href="#"
+            href=""
           >
             JOIN
           </a>

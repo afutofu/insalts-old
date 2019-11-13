@@ -57,6 +57,11 @@ app.use("/", indexRoutes);
 app.use("/s", saltRoutes);
 app.use("/s/:saltName/insalt", postRoutes);
 
+// NO PAGE FOUND
+app.get("*", function(req, res) {
+  res.send("404 PAGE NOT FOUND");
+});
+
 // START SERVER
 app.listen(PORT, function() {
   console.log("Server listening on " + PORT);

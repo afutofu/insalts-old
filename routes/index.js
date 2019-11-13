@@ -53,7 +53,9 @@ router.post(
   "/login",
   passport.authenticate("local", {
     successRedirect: "/",
-    failureRedirect: "/"
+    successFlash: "Successfully logged in",
+    failureRedirect: "/login",
+    failureFlash: "Wrong username or password. Please try again"
   }),
   function(req, res) {}
 );
@@ -63,11 +65,6 @@ router.get("/logout", function(req, res) {
   req.logout();
   req.flash("success", "You have successfully logged out");
   res.redirect("/");
-});
-
-// NO PAGE FOUND
-router.get("*", function(req, res) {
-  res.send("404 PAGE NOT FOUND");
 });
 
 module.exports = router;

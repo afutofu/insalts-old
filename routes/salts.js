@@ -90,7 +90,7 @@ router.get("/:name", function(req, res) {
 });
 
 // EDIT
-router.get("/:name/edit", function(req, res) {
+router.get("/:name/edit", middleware.checkSaltOwnership, function(req, res) {
   Salt.findOne({ name: req.params.name }, function(err, foundSalt) {
     if (err) {
       req.flash("error", err.message);
@@ -102,7 +102,7 @@ router.get("/:name/edit", function(req, res) {
 });
 
 // UPDATE
-router.put("/:name", function(req, res) {
+router.put("/:name", middleware.checkSaltOwnership, function(req, res) {
   Salt.findOne({ name: req.params.name }, function(err, foundSalt) {
     if (err) {
       console.log(err);
@@ -127,7 +127,7 @@ router.put("/:name", function(req, res) {
 });
 
 // DESTROY
-router.delete("/:name", function(req, res) {
+router.delete("/:name", middleware.checkSaltOwnership, function(req, res) {
   Salt.findOne({ name: req.params.name }, function(err, foundSalt) {
     if (err) {
       res.redirect("back");
