@@ -12,4 +12,14 @@ router.get("/", function(req, res) {
     });
 });
 
+router.put("/:postId", function(req, res) {
+  Post.findByIdAndUpdate(req.params.postId, req.body, { new: true })
+    .then(function(post) {
+      res.json(post);
+    })
+    .catch(function(err) {
+      console.log(err);
+    });
+});
+
 module.exports = router;

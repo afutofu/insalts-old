@@ -135,6 +135,10 @@ a.post-link-nested {
   font-size: 20px;
 }
 
+.i-vote-voted {
+  color: var(--rock-salt);
+}
+
 .i-vote:hover {
   color: var(--rock-salt);
 }

@@ -2,9 +2,8 @@ $(document).ready(function() {
   // POST CLICKS
   var upvote = $("i.upvote");
   var downvote = $("i.downvote");
-  var votes = $(".votes");
+  var posts = $(".post");
   var postLinks = $(".post-link");
-  var postSaltLink = $("post-salt-name");
 
   function disableLink(e) {
     e.preventDefault();
@@ -19,7 +18,34 @@ $(document).ready(function() {
     postLinks.unbind("click", disableLink);
   });
 
-  // upvote.on("click", () => {});
+  // Upvote
+  upvote.on("click", function(e) {
+    upvotePost($(this).parent(), $(this));
+  });
+
+  function upvotePost(upvotedPost, upvoteIcon) {
+    var postId = upvotedPost.attr("data-postId");
+    var currentVote = parseInt(upvotedPost.attr("data-votes"));
+    var updatedVote = currentVote + 1;
+    var updatedData = { vote: updatedVote };
+
+    var voteSpan = $(upvotedPost.children()[1]);
+
+    var url = "/api/insalts/" + postId;
+
+    $.ajax({
+      method: "PUT",
+      url: url,
+      data: updatedData
+    })
+      .then(function(updatedPost) {
+        upvoteIcon.toggleClass("i-vote-voted");
+        voteSpan.text(updatedVote);
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
+  }
 
   downvote.on("mouseenter", function() {
     postLinks.bind("click", disableLink);
