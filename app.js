@@ -14,6 +14,9 @@ var PORT = process.env.PORT || 3000;
 var indexRoutes = require("./routes");
 var saltRoutes = require("./routes/salts");
 var postRoutes = require("./routes/posts");
+var saltApiRoutes = require("./routes/api/salts");
+var postApiRoutes = require("./routes/api/posts");
+var userApiRoutes = require("./routes/api/users");
 
 // CONNECT TO DATABASE
 mongoose.connect("mongodb://localhost/insalts", {
@@ -56,6 +59,9 @@ app.use(function(req, res, next) {
 app.use("/", indexRoutes);
 app.use("/s", saltRoutes);
 app.use("/s/:saltName/insalt", postRoutes);
+app.use("/api/s", saltApiRoutes);
+app.use("/api/insalts", postApiRoutes);
+app.use("/api/users", userApiRoutes);
 
 // NO PAGE FOUND
 app.get("*", function(req, res) {
