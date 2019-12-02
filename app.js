@@ -18,12 +18,14 @@ var saltApiRoutes = require("./routes/api/salts");
 var postApiRoutes = require("./routes/api/posts");
 var userApiRoutes = require("./routes/api/users");
 
-// CONNECT TO DATABASE
+// CONNECT TO MONGO DATABASE
 mongoose.connect("mongodb://localhost/insalts", {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
 mongoose.set("useFindAndModify", false);
+mongoose.set("debug", true);
+mongoose.Promise = Promise;
 
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));

@@ -19,6 +19,8 @@ $(document).ready(function() {
     postLinks.unbind("click", disableLink);
   });
 
+  // upvote.on("click", () => {});
+
   downvote.on("mouseenter", function() {
     postLinks.bind("click", disableLink);
   });
