@@ -43,8 +43,22 @@ $(document).ready(function() {
       downvoteIcon.toggleClass("i-vote-voted");
     }
 
+    // $.ajax({
+    //   method: "GET",
+    //   url: url
+    // })
+    //   .then(function(data) {})
+    //   .catch(function(err) {
+    //     console.log(err);
+    //   });
+
     if (!upvoteIcon.hasClass("i-vote-voted")) {
-      var updatedData = { vote: currentVote + 1 };
+      var updatedData = {
+        vote: currentVote + 1,
+        upvote: true,
+        downvote: false,
+        voted: true
+      };
       $.ajax({
         method: "PUT",
         url: url,
