@@ -72,7 +72,12 @@ $(document).ready(function() {
           console.log(err);
         });
     } else if (upvoteIcon.hasClass("i-vote-voted")) {
-      var updatedData = { vote: currentVote };
+      var updatedData = {
+        vote: currentVote + 1,
+        upvote: true,
+        downvote: false,
+        voted: false
+      };
       $.ajax({
         method: "PUT",
         url: url,
