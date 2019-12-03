@@ -34,9 +34,13 @@ router.put("/:postId", function(req, res) {
           }
           foundPost.save();
 
-          Post.findByIdAndUpdate(req.params.postId, req.body.vote, {
-            new: true
-          })
+          Post.findByIdAndUpdate(
+            req.params.postId,
+            { vote: req.body.vote },
+            {
+              new: true
+            }
+          )
             .then(function(post) {
               res.json(post);
             })
