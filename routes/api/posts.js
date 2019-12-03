@@ -12,6 +12,16 @@ router.get("/", function(req, res) {
     });
 });
 
+router.get("/:postId", function(req, res) {
+  Post.findById(req.params.postId)
+    .then(function(allSalts) {
+      res.json(allSalts);
+    })
+    .catch(function(err) {
+      console.log(err);
+    });
+});
+
 router.put("/:postId", function(req, res) {
   Post.findByIdAndUpdate(req.params.postId, req.body, { new: true })
     .then(function(post) {

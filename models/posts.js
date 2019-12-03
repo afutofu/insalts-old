@@ -3,7 +3,6 @@ var mongoose = require("mongoose");
 // Schema Setup
 
 // Create Schema
-
 var postSchema = new mongoose.Schema({
   title: String,
   image: String,
@@ -22,7 +21,19 @@ var postSchema = new mongoose.Schema({
     },
     name: String
   },
-  vote: { type: Number, default: 0 }
+  vote: { type: Number, default: 0 },
+  upvotedUsers: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
+    }
+  ],
+  downvotedUsers: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
+    }
+  ]
 });
 
 // Create

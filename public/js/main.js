@@ -18,17 +18,30 @@ $(document).ready(function() {
     postLinks.unbind("click", disableLink);
   });
 
+  downvote.on("mouseenter", function() {
+    postLinks.bind("click", disableLink);
+  });
+
+  downvote.on("mouseleave", function() {
+    postLinks.unbind("click", disableLink);
+  });
+
   // Upvote
-  upvote.on("click", function(e) {
+  upvote.on("click", function() {
     upvotePost($(this).parent(), $(this));
   });
 
   function upvotePost(upvotedPost, upvoteIcon) {
     var postId = upvotedPost.attr("data-postId");
     var currentVote = parseInt(upvotedPost.attr("data-votes"));
-
     var voteSpan = $(upvotedPost.children()[1]);
     var url = "/api/insalts/" + postId;
+
+    var downvoteIcon = $(upvotedPost.children()[2]);
+
+    if (downvoteIcon.hasClass("i-vote-voted")) {
+      downvoteIcon.toggleClass("i-vote-voted");
+    }
 
     if (!upvoteIcon.hasClass("i-vote-voted")) {
       var updatedData = { vote: currentVote + 1 };
@@ -61,14 +74,6 @@ $(document).ready(function() {
     }
   }
 
-  downvote.on("mouseenter", function() {
-    postLinks.bind("click", disableLink);
-  });
-
-  downvote.on("mouseleave", function() {
-    postLinks.unbind("click", disableLink);
-  });
-
   // Downvote
   downvote.on("click", function() {
     downvotePost($(this).parent(), $(this));
@@ -77,10 +82,14 @@ $(document).ready(function() {
   function downvotePost(downvotedPost, downvoteIcon) {
     var postId = downvotedPost.attr("data-postId");
     var currentVote = parseInt(downvotedPost.attr("data-votes"));
-
     var voteSpan = $(downvotedPost.children()[1]);
-
     var url = "/api/insalts/" + postId;
+
+    var upvoteIcon = $(downvotedPost.children()[0]);
+
+    if (upvoteIcon.hasClass("i-vote-voted")) {
+      upvoteIcon.toggleClass("i-vote-voted");
+    }
 
     if (!downvoteIcon.hasClass("i-vote-voted")) {
       var updatedData = { vote: currentVote - 1 };
