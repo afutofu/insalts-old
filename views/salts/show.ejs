@@ -34,7 +34,15 @@
                 data-postId="<%=post._id%>"
                 data-votes="<%=post.vote%>"
               >
+                <%if(currentUser &&
+                post.upvotedUsers.includes(currentUser._id)){%>
+                <i
+                  class="far fa-caret-square-up i-vote upvote i-vote-voted"
+                ></i>
+                <%} else {%>
                 <i class="far fa-caret-square-up i-vote upvote"></i>
+                <%}%>
+
                 <span class="votes"><%=post.vote%></span>
                 <i class="fas fa-caret-square-down i-vote downvote mt-1"></i>
               </div>
