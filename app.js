@@ -24,7 +24,7 @@ mongoose.connect("mongodb://localhost/insalts", {
   useUnifiedTopology: true
 });
 mongoose.set("useFindAndModify", false);
-mongoose.set("debug", true);
+// mongoose.set("debug", true);
 mongoose.Promise = Promise;
 
 app.set("view engine", "ejs");
