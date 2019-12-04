@@ -38,10 +38,6 @@ $(document).ready(function() {
 
     var downvoteIcon = $(upvotedPost.children()[2]);
 
-    if (downvoteIcon.hasClass("i-vote-voted")) {
-      downvoteIcon.toggleClass("i-vote-voted");
-    }
-
     $.ajax({
       method: "GET",
       url: url
@@ -57,6 +53,9 @@ $(document).ready(function() {
             downvote: false,
             voted: true
           };
+          if (downvoteIcon.hasClass("i-vote-voted")) {
+            updatedData.vote = currentVotes + 2;
+          }
           $.ajax({
             method: "PUT",
             url: url,
@@ -64,7 +63,10 @@ $(document).ready(function() {
           })
             .then(function(updatedPost) {
               upvoteIcon.toggleClass("i-vote-voted");
-              voteSpan.text(currentVotes + 1);
+              voteSpan.text(updatedData.vote);
+              if (downvoteIcon.hasClass("i-vote-voted")) {
+                downvoteIcon.toggleClass("i-vote-voted");
+              }
             })
             .catch(function(err) {
               console.log(err);
@@ -83,7 +85,7 @@ $(document).ready(function() {
           })
             .then(function(updatedPost) {
               upvoteIcon.toggleClass("i-vote-voted");
-              voteSpan.text(currentVotes - 1);
+              voteSpan.text(updatedData.vote);
             })
             .catch(function(err) {
               console.log(err);
@@ -107,10 +109,6 @@ $(document).ready(function() {
 
     var upvoteIcon = $(downvotedPost.children()[0]);
 
-    if (upvoteIcon.hasClass("i-vote-voted")) {
-      upvoteIcon.toggleClass("i-vote-voted");
-    }
-
     $.ajax({
       method: "GET",
       url: url
@@ -126,6 +124,9 @@ $(document).ready(function() {
             downvote: true,
             voted: true
           };
+          if (upvoteIcon.hasClass("i-vote-voted")) {
+            updatedData.vote = currentVotes - 2;
+          }
           $.ajax({
             method: "PUT",
             url: url,
@@ -133,7 +134,10 @@ $(document).ready(function() {
           })
             .then(function(updatedPost) {
               downvoteIcon.toggleClass("i-vote-voted");
-              voteSpan.text(currentVotes - 1);
+              voteSpan.text(updatedData.vote);
+              if (upvoteIcon.hasClass("i-vote-voted")) {
+                upvoteIcon.toggleClass("i-vote-voted");
+              }
             })
             .catch(function(err) {
               console.log(err);

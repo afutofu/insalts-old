@@ -30,6 +30,15 @@ router.put("/:postId", function(req, res) {
         .then(function(foundPost) {
           if (req.body.upvote == "true" && req.body.voted == "true") {
             foundPost.upvotedUsers.push(foundUser);
+
+            for (var i = 0; i < foundPost.downvotedUsers.length; i++) {
+              if (
+                JSON.stringify(foundPost.downvotedUsers[i]) ==
+                JSON.stringify(req.user._id)
+              ) {
+                foundPost.downvotedUsers.splice(i, 1);
+              }
+            }
           } else if (req.body.upvote == "true" && req.body.voted == "false") {
             for (var i = 0; i < foundPost.upvotedUsers.length; i++) {
               if (
@@ -41,9 +50,16 @@ router.put("/:postId", function(req, res) {
             }
           } else if (req.body.downvote == "true" && req.body.voted == "true") {
             foundPost.downvotedUsers.push(foundUser);
-            console.log("added to downvoted users");
+
+            for (var i = 0; i < foundPost.upvotedUsers.length; i++) {
+              if (
+                JSON.stringify(foundPost.upvotedUsers[i]) ==
+                JSON.stringify(req.user._id)
+              ) {
+                foundPost.upvotedUsers.splice(i, 1);
+              }
+            }
           } else if (req.body.downvote == "true" && req.body.voted == "false") {
-            console.log("removed from downvoted users");
             for (var i = 0; i < foundPost.downvotedUsers.length; i++) {
               if (
                 JSON.stringify(foundPost.downvotedUsers[i]) ==
