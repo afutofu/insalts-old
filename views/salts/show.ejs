@@ -44,7 +44,14 @@
                 <%}%>
 
                 <span class="votes"><%=post.vote%></span>
+                <%if(currentUser &&
+                post.downvotedUsers.includes(currentUser._id)){%>
+                <i
+                  class="i-vote-voted fas fa-caret-square-down i-vote downvote mt-1"
+                ></i>
+                <%} else {%>
                 <i class="fas fa-caret-square-down i-vote downvote mt-1"></i>
+                <%}%>
               </div>
             </div>
           </div>
