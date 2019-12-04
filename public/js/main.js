@@ -33,12 +33,10 @@ $(document).ready(function() {
 
   function upvotePost(upvotedPost, upvoteIcon) {
     var postId = upvotedPost.attr("data-postId");
-    // var currentVote = parseInt(upvotedPost.attr("data-votes"));
     var voteSpan = $(upvotedPost.children()[1]);
     var url = "/api/insalts/" + postId;
 
     var downvoteIcon = $(upvotedPost.children()[2]);
-    var totalVotes;
 
     if (downvoteIcon.hasClass("i-vote-voted")) {
       downvoteIcon.toggleClass("i-vote-voted");
@@ -104,7 +102,6 @@ $(document).ready(function() {
 
   function downvotePost(downvotedPost, downvoteIcon) {
     var postId = downvotedPost.attr("data-postId");
-    var currentVote = parseInt(downvotedPost.attr("data-votes"));
     var voteSpan = $(downvotedPost.children()[1]);
     var url = "/api/insalts/" + postId;
 
@@ -114,35 +111,57 @@ $(document).ready(function() {
       upvoteIcon.toggleClass("i-vote-voted");
     }
 
-    if (!downvoteIcon.hasClass("i-vote-voted")) {
-      var updatedData = { vote: currentVote - 1 };
-      $.ajax({
-        method: "PUT",
-        url: url,
-        data: updatedData
+    $.ajax({
+      method: "GET",
+      url: url
+    })
+      .then(function(data) {
+        var upvotes = data.upvotedUsers.length;
+        var downvotes = data.downvotedUsers.length;
+        var currentVotes = upvotes - downvotes;
+        if (!downvoteIcon.hasClass("i-vote-voted")) {
+          var updatedData = {
+            vote: currentVotes - 1,
+            upvote: false,
+            downvote: true,
+            voted: true
+          };
+          $.ajax({
+            method: "PUT",
+            url: url,
+            data: updatedData
+          })
+            .then(function(updatedPost) {
+              downvoteIcon.toggleClass("i-vote-voted");
+              voteSpan.text(currentVotes - 1);
+            })
+            .catch(function(err) {
+              console.log(err);
+            });
+        } else if (downvoteIcon.hasClass("i-vote-voted")) {
+          var updatedData = {
+            vote: currentVotes + 1,
+            upvote: false,
+            downvote: true,
+            voted: false
+          };
+          $.ajax({
+            method: "PUT",
+            url: url,
+            data: updatedData
+          })
+            .then(function(updatedPost) {
+              downvoteIcon.toggleClass("i-vote-voted");
+              voteSpan.text(currentVotes + 1);
+            })
+            .catch(function(err) {
+              console.log(err);
+            });
+        }
       })
-        .then(function(updatedPost) {
-          downvoteIcon.toggleClass("i-vote-voted");
-          voteSpan.text(currentVote - 1);
-        })
-        .catch(function(err) {
-          console.log(err);
-        });
-    } else if (downvoteIcon.hasClass("i-vote-voted")) {
-      var updatedData = { vote: currentVote };
-      $.ajax({
-        method: "PUT",
-        url: url,
-        data: updatedData
-      })
-        .then(function(updatedPost) {
-          downvoteIcon.toggleClass("i-vote-voted");
-          voteSpan.text(currentVote);
-        })
-        .catch(function(err) {
-          console.log(err);
-        });
-    }
+      .catch(function(err) {
+        console.log(err);
+      });
   }
 
   // JOINED BUTTON HOVER TO LEAVE BUTTON
