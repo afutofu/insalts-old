@@ -178,4 +178,14 @@ $(document).ready(function() {
   joinedBtn.on("mouseleave", function() {
     $(this).text("JOINED");
   });
+
+  // COMMENTS
+  var commentTextArea = $("#comment-textarea");
+  var roastBtn = $("#roast-btn");
+
+  roastBtn.on("click", function() {
+    var comment = commentTextArea.val();
+    if (comment != "") {
+    }
+  });
 });

@@ -34,7 +34,12 @@ var postSchema = new mongoose.Schema({
       ref: "User"
     }
   ],
-  comments: [{ type: String }]
+  comments: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Comment"
+    }
+  ]
 });
 
 // Create

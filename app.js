@@ -64,6 +64,7 @@ app.use("/s/:saltName/insalt", postRoutes);
 app.use("/api/s", saltApiRoutes);
 app.use("/api/insalts", postApiRoutes);
 app.use("/api/users", userApiRoutes);
+app.use("/api/comments", userApiRoutes);
 
 // NO PAGE FOUND
 app.get("*", function(req, res) {
