@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  // POST CLICKS
+  // POST VOTING SYSTEM ==================================
   var upvote = $("i.upvote");
   var downvote = $("i.downvote");
   var posts = $(".post");
@@ -168,7 +168,7 @@ $(document).ready(function() {
       });
   }
 
-  // JOINED BUTTON HOVER TO LEAVE BUTTON
+  // JOINED BUTTON HOVER TO LEAVE BUTTON =====================
   var joinedBtn = $("#btn-joined");
 
   joinedBtn.on("mouseenter", function() {

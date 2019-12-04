@@ -22,7 +22,7 @@
           </p>
           <%if (currentUser && post.author.id.equals(currentUser._id)){%>
           <div class="row mb-3">
-            <div class="col-lg-1">
+            <div class="col-lg-1 mr-2">
               <a
                 id="btn-edit"
                 class="btn btn-warning btn-sm"
@@ -71,6 +71,17 @@
           </div>
         </div>
       </div>
+      <%if(post.comments.length > 0){%>
+      <div id="comment-box">
+        <ul class="list-group">
+          <li class="list-group-item">Cras justo odio</li>
+          <li class="list-group-item">Dapibus ac facilisis in</li>
+          <li class="list-group-item">Morbi leo risus</li>
+          <li class="list-group-item">Porta ac consectetur ac</li>
+          <li class="list-group-item">Vestibulum at eros</li>
+        </ul>
+      </div>
+      <%}%>
     </div>
 
     <!-- Saltiest Salt Card -->
