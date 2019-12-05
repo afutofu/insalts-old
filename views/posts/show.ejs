@@ -13,7 +13,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-lg-8 mb-3">
+    <div class="col-lg-8">
       <div class="card post">
         <div class="card-body">
           <h5 class="card-title post-title"><%=post.title%></h5>
@@ -21,93 +21,96 @@
             <%-post.content%>
           </p>
           <%if (currentUser && post.author.id.equals(currentUser._id)){%>
+          <%if(comments.length > 0){%>
           <div class="row mb-3">
-            <div class="col-lg-1 mr-2">
-              <a
-                id="btn-edit"
-                class="btn btn-warning btn-sm"
-                href="/s/<%=salt.name%>/insalt/<%=post._id%>/edit"
-                >EDIT</a
-              >
-            </div>
-            <div class="col-lg-1">
-              <form
-                action="/s/<%=salt.name%>/insalt/<%=post._id%>/?_method=DELETE"
-                method="POST"
-              >
-                <button class="btn btn-danger btn-sm">
-                  REMOVE
-                </button>
-              </form>
-            </div>
-          </div>
-          <%}%>
-          <div id="comment-form">
-            <form action="">
-              <div class="form-group">
-                <textarea
-                  id="comment-textarea"
-                  class="form-control comment-text-form"
-                  name="content"
-                  placeholder="Roast this insalt"
-                  rows="5"
-                ></textarea>
+            <%}else{%>
+            <div class="row">
+              <%}%>
+              <div class="col-lg-1 mr-2">
+                <a
+                  id="btn-edit"
+                  class="btn btn-warning btn-sm"
+                  href="/s/<%=salt.name%>/insalt/<%=post._id%>/edit"
+                  >EDIT</a
+                >
               </div>
-              <div class="card comment-toolbar">
-                <div class="form-group container">
-                  <div class="row">
-                    <div class="col-lg-11"></div>
-                    <div class="col-lg-1">
-                      <div
-                        id="roast-btn"
-                        class="btn btn-rocksalt btn-sm float-right"
-                        data-postId="<%=post._id%>"
-                      >
-                        ROAST
+              <div class="col-lg-1">
+                <form
+                  action="/s/<%=salt.name%>/insalt/<%=post._id%>/?_method=DELETE"
+                  method="POST"
+                >
+                  <button class="btn btn-danger btn-sm">
+                    REMOVE
+                  </button>
+                </form>
+              </div>
+            </div>
+            <%}%>
+            <div id="comment-form">
+              <form action="">
+                <div class="form-group">
+                  <textarea
+                    id="comment-textarea"
+                    class="form-control comment-text-form"
+                    name="content"
+                    placeholder="Roast this insalt"
+                    rows="5"
+                  ></textarea>
+                </div>
+                <div class="card comment-toolbar">
+                  <div class="form-group container">
+                    <div class="row">
+                      <div class="col-lg-11"></div>
+                      <div class="col-lg-1">
+                        <div
+                          id="roast-btn"
+                          class="btn btn-rocksalt btn-sm float-right"
+                          data-postId="<%=post._id%>"
+                        >
+                          ROAST
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div id="comment-box" class="mb-3">
+          <ul id="comment-list" class="list-group">
+            <%if(comments.length > 0){%> <%comments.forEach(function(comment){%>
+            <li class="list-group-item"><%=comment.content%></li>
+            <%})%> <%}%>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Saltiest Salt Card -->
+      <div class=" col-lg-4">
+        <!-- Page Info -->
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">s/<%=salt.name%></h5>
+            <p class="card-text">
+              <%=salt.description%>
+            </p>
+            <a
+              class="btn btn-outline-rocksalt btn-block btn-xl btn-join mb-3"
+              href="#"
+            >
+              JOIN
+            </a>
+            <form action="/s/<%=salt.name%>/?_method=DELETE" method="POST">
+              <button class="btn btn-rocksalt text-rocksalt btn-xl btn-block">
+                REMOVE
+              </button>
             </form>
           </div>
         </div>
       </div>
-      <%if(post.comments.length > 0){%>
-      <div id="comment-box">
-        <ul class="list-group">
-          <%comments.forEach(function(comment){%>
-          <li class="list-group-item"><%=comment.content%></li>
-          <%})%>
-        </ul>
-      </div>
-      <%}%>
-    </div>
-
-    <!-- Saltiest Salt Card -->
-    <div class=" col-lg-4">
-      <!-- Page Info -->
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">s/<%=salt.name%></h5>
-          <p class="card-text">
-            <%=salt.description%>
-          </p>
-          <a
-            class="btn btn-outline-rocksalt btn-block btn-xl btn-join mb-3"
-            href="#"
-          >
-            JOIN
-          </a>
-          <form action="/s/<%=salt.name%>/?_method=DELETE" method="POST">
-            <button class="btn btn-rocksalt text-rocksalt btn-xl btn-block">
-              REMOVE
-            </button>
-          </form>
-        </div>
-      </div>
     </div>
   </div>
-</div>
 
-<% include ../partials/footer %>
+  <% include ../partials/footer %>
+</div>

@@ -182,6 +182,7 @@ $(document).ready(function() {
   // COMMENTS
   var commentTextArea = $("#comment-textarea");
   var roastBtn = $("#roast-btn");
+  var commentList = $("#comment-list");
 
   roastBtn.on("click", function() {
     var comment = commentTextArea.val();
@@ -198,6 +199,10 @@ $(document).ready(function() {
       })
         .then(function(createdComment) {
           commentTextArea.val("");
+          var li = "<li class='list-group-item'>" + comment + "</li>";
+          var newComment = $(li);
+          console.log(newComment);
+          commentList.append(newComment);
         })
         .catch(function(err) {
           console.log(err);
