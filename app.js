@@ -17,6 +17,7 @@ var postRoutes = require("./routes/posts");
 var saltApiRoutes = require("./routes/api/salts");
 var postApiRoutes = require("./routes/api/posts");
 var userApiRoutes = require("./routes/api/users");
+var commentApiRoutes = require("./routes/api/comments");
 
 // CONNECT TO MONGO DATABASE
 mongoose.connect("mongodb://localhost/insalts", {
@@ -64,7 +65,7 @@ app.use("/s/:saltName/insalt", postRoutes);
 app.use("/api/s", saltApiRoutes);
 app.use("/api/insalts", postApiRoutes);
 app.use("/api/users", userApiRoutes);
-app.use("/api/comments", userApiRoutes);
+app.use("/api/comments", commentApiRoutes);
 
 // NO PAGE FOUND
 app.get("*", function(req, res) {

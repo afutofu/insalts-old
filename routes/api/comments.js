@@ -16,4 +16,14 @@ router.get("/", function(req, res) {
 });
 
 // CREATE
-router.post("/:postId/:commentId", function(req, res) {});
+router.post("/", function(req, res) {
+  Comment.create(req.body)
+    .then(function(createdComment) {
+      res.json(createdComment);
+    })
+    .catch(function(err) {
+      console.log(err);
+    });
+});
+
+module.exports = router;

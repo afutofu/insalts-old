@@ -88,6 +88,7 @@ a.post-link-nested {
   color: rgb(253, 253, 253);
   background-color: var(--rock-salt);
   font-weight: bold;
+  cursor: pointer;
 }
 
 .btn-rocksalt:hover {

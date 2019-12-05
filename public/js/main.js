@@ -186,6 +186,23 @@ $(document).ready(function() {
   roastBtn.on("click", function() {
     var comment = commentTextArea.val();
     if (comment != "") {
+      var postId = $(this).attr("data-postId");
+      updatedData = { content: comment, post: postId };
+
+      var url = "/api/comments";
+
+      $.ajax({
+        method: "POST",
+        url: url,
+        data: updatedData
+      })
+        .then(function(createdComment) {
+          console.log("workss");
+          console.log(createdComment);
+        })
+        .catch(function(err) {
+          console.log(err);
+        });
     }
   });
 });
