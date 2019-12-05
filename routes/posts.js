@@ -74,14 +74,20 @@ router.get("/:id", function(req, res) {
       req.flash("error", "Could not access that salt");
       res.redirect("/s/" + foundSalt.name);
     } else {
-      Post.findById(req.params.id, function(err, foundPost) {
-        if (err) {
-          req.flash("error", "Could not access that insalt");
-          res.redirect("/s/" + foundSalt.name);
-        } else {
-          res.render("posts/show", { salt: foundSalt, post: foundPost });
-        }
-      });
+      Post.findById(req.params.id)
+        .populate("comments")
+        .exec(function(err, foundPost) {
+          if (err) {
+            req.flash("error", "Could not access that insalt");
+            res.redirect("/s/" + foundSalt.name);
+          } else {
+            res.render("posts/show", {
+              salt: foundSalt,
+              post: foundPost,
+              comments: foundPost.comments
+            });
+          }
+        });
     }
   });
 });

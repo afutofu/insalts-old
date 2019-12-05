@@ -197,8 +197,7 @@ $(document).ready(function() {
         data: updatedData
       })
         .then(function(createdComment) {
-          console.log("workss");
-          console.log(createdComment);
+          commentTextArea.val("");
         })
         .catch(function(err) {
           console.log(err);

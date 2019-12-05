@@ -17,9 +17,17 @@ router.get("/", function(req, res) {
 
 // CREATE
 router.post("/", function(req, res) {
-  Comment.create(req.body)
-    .then(function(createdComment) {
-      res.json(createdComment);
+  Post.findById(req.body.post)
+    .then(function(foundPost) {
+      Comment.create(req.body)
+        .then(function(createdComment) {
+          foundPost.comments.push(createdComment);
+          foundPost.save();
+          res.json(createdComment);
+        })
+        .catch(function(err) {
+          console.log(err);
+        });
     })
     .catch(function(err) {
       console.log(err);

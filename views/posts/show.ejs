@@ -13,7 +13,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-lg-8">
+    <div class="col-lg-8 mb-3">
       <div class="card post">
         <div class="card-body">
           <h5 class="card-title post-title"><%=post.title%></h5>
@@ -76,8 +76,8 @@
       <%if(post.comments.length > 0){%>
       <div id="comment-box">
         <ul class="list-group">
-          <%post.comments.forEach(function(comment){%>
-          <li class="list-group-item"><%comment%></li>
+          <%comments.forEach(function(comment){%>
+          <li class="list-group-item"><%=comment.content%></li>
           <%})%>
         </ul>
       </div>
