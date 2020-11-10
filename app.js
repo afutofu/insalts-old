@@ -7,11 +7,12 @@ var express = require("express"),
   flash = require("connect-flash"),
   LocalStrategy = require("passport-local"),
   User = require("./models/users");
+require("dotenv/config");
 
 var PORT = process.env.PORT || 3000;
 
 // ROUTES
-var indexRoutes = require("./routes");
+var indexRoutes = require("./routes/index");
 var saltRoutes = require("./routes/salts");
 var postRoutes = require("./routes/posts");
 var saltApiRoutes = require("./routes/api/salts");
@@ -19,14 +20,25 @@ var postApiRoutes = require("./routes/api/posts");
 var userApiRoutes = require("./routes/api/users");
 var commentApiRoutes = require("./routes/api/comments");
 
-// CONNECT TO MONGO DATABASE
-mongoose.connect("mongodb://localhost/insalts", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
-mongoose.set("useFindAndModify", false);
+// CONNECT TO DB
+mongoose.connect(
+  process.env.DB_CONNECTION,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
+  },
+  () => console.log("Connected to DB!")
+);
+
+// mongoose.connect(process.env.DB_CONNECTION, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+//   useFindAndModify: false,
+// });
 // mongoose.set("debug", true);
-mongoose.Promise = Promise;
+// mongoose.Promise = Promise;
 
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
@@ -40,7 +52,7 @@ app.use(
   require("express-session")({
     secret: "Insalts",
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
   })
 );
 
@@ -51,7 +63,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 // USE FLASH
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.locals.currentUser = req.user;
   res.locals.error = req.flash("error");
   res.locals.success = req.flash("success");
@@ -68,11 +80,11 @@ app.use("/api/users", userApiRoutes);
 app.use("/api/comments", commentApiRoutes);
 
 // NO PAGE FOUND
-app.get("*", function(req, res) {
+app.get("*", function (req, res) {
   res.send("404 PAGE NOT FOUND");
 });
 
 // START SERVER
-app.listen(PORT, function() {
+app.listen(PORT, function () {
   console.log("Server listening on " + PORT);
 });

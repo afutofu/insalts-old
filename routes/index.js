@@ -9,10 +9,10 @@ var express = require("express"),
   Salt = require("../models/salts");
 
 // INDEX
-router.get("/", function(req, res) {
+router.get("/", function (req, res) {
   Salt.find({})
     .populate("posts")
-    .exec(function(err, allSalts) {
+    .exec(function (err, allSalts) {
       if (err) {
         req.flash("error", err.message);
         return res.redirect("back");
@@ -23,19 +23,19 @@ router.get("/", function(req, res) {
 });
 
 // NEW
-router.get("/register", function(req, res) {
+router.get("/register", function (req, res) {
   res.render("register");
 });
 
 // CREATE
-router.post("/register", function(req, res) {
+router.post("/register", function (req, res) {
   var newUser = new User({ username: req.body.username });
-  User.register(newUser, req.body.password, function(err, user) {
+  User.register(newUser, req.body.password, function (err, user) {
     if (err) {
       req.flash("error", err.message);
       return res.redirect("/register");
     }
-    passport.authenticate("local")(req, res, function() {
+    passport.authenticate("local")(req, res, function () {
       console.log("Successful");
       req.flash("success", "Welcome to Insalts, " + user.username);
       res.redirect("/");
@@ -44,7 +44,7 @@ router.post("/register", function(req, res) {
 });
 
 // LOGIN
-router.get("/login", function(req, res) {
+router.get("/login", function (req, res) {
   res.render("login");
 });
 
@@ -55,13 +55,13 @@ router.post(
     successRedirect: "/",
     successFlash: "Successfully logged in",
     failureRedirect: "/login",
-    failureFlash: "Wrong username or password. Please try again"
+    failureFlash: "Wrong username or password. Please try again",
   }),
-  function(req, res) {}
+  function (req, res) {}
 );
 
 // LOGOUT
-router.get("/logout", function(req, res) {
+router.get("/logout", function (req, res) {
   req.logout();
   req.flash("success", "You have successfully logged out");
   res.redirect("/");
