@@ -9,7 +9,7 @@ var express = require("express"),
   User = require("./models/users");
 require("dotenv/config");
 
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 3030;
 
 // ROUTES
 var indexRoutes = require("./routes/index");
